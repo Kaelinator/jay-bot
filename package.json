@@ -1,0 +1,22 @@
+{
+  "name": "jay-bot",
+  "version": "1.0.0",
+  "description": "Jay likes to send emails that require near-instantaneous responses. jay-bot is here to help!",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaelinator/jay-bot.git"
+  },
+  "keywords": [
+    "j"
+  ],
+  "author": "Kael",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kaelinator/jay-bot/issues"
+  },
+  "homepage": "https://github.com/Kaelinator/jay-bot#readme"
+}

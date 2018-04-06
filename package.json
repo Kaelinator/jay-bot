@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Kaelinator/jay-bot/issues"
   },
-  "homepage": "https://github.com/Kaelinator/jay-bot#readme"
+  "homepage": "https://github.com/Kaelinator/jay-bot#readme",
+  "dependencies": {
+    "nodemailer": "^4.6.4"
+  }
 }

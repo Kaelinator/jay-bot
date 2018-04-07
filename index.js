@@ -1,65 +1,36 @@
 'use strict'
 require('dotenv').config()
-const imaps = require('imap-simple')
-const nodemailer = require('nodemailer')
+const MailListener = require('mail-listener2')
 const parse = require('./lib/parse')
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASS
-  }
-})
-
-const mailOptions = {
-  from: `"Kaelinator" <${process.env.GMAIL_USER}>`,
-  to: `${process.env.RECIPIENT}`,
-  subject: 'Test email',
-  text: 'Hi there',
-  html: '<b>Woah!</b>'
-}
-
-const fetchOptions = { 
-  bodies: ['HEADER.FIELDS (FROM)', 'TEXT'],
-  markSeen: false
-}
-
-const imap = {
-  user: process.env.GMAIL_USER,
+const listener = new MailListener({
+  
+  username: process.env.GMAIL_USER,
   password: process.env.GMAIL_PASS,
   host: 'imap.gmail.com',
   port: 993,
   tls: true,
-  authTimeout: 3000
-}
+  tlsOptions: { rejectUnauthorized: false },
+  mailbox: 'INBOX',
+  searchFilter: ['UNSEEN'],
+  markSeen: true,
+  mailParserOptions: {streamAttachments: false},
+  attatchments: false
+})
 
-const config = {
-  imap,
-  onmail: n => {
-    if (n > 1) return
-    imaps.connect({ imap })
-      .then(conn => {
-        return conn.openBox('INBOX')
-          .then(() => conn.search(['UNSEEN'], fetchOptions))
-          .then(results => results.map(r => r.parts))
-          .then(parse)
-          .then(() => conn.end())
-      })
-      .catch(err => console.log('onmail callback', err))
-  }
-}
+listener.on('server:connected', () => console.log('connected'))
+listener.on('server:disconnected', () => console.log('disconnected'))
 
-imaps.connect(config)
-  .then(conn => {
-    conn.openBox('INBOX')
-  })
-  .catch(err => console.log(err))
+listener.on('error', err => {
+  console.log('error', err)
+  listener.stop()
+})
 
-// transporter.sendMail(mailOptions, (error, info) => {
-//   if (error) {
-//     console.log(error)
-//     return 
-//   }
-//   console.log('Sent', info.messageId)
-// })
+
+listener.on('mail', (mail, seqno, attrs) => {
+  console.log(`You have mail! #${seqno}`)
+  console.log('mail:', mail)
+  console.log('attributes:', attrs)
+})
+
+listener.start()

@@ -2,6 +2,7 @@
 require('dotenv').config()
 const MailListener = require('mail-listener2')
 const determine = require('./lib/determine')
+const Promise = require('bluebird')
 
 const listener = new MailListener({
   
@@ -26,9 +27,9 @@ listener.on('error', err => {
   listener.stop()
 })
 
-
 listener.on('mail', (mail, seqno) => {
-  determine(mail)
+
+  Promise.resolve(determine(mail))
     .then(replyJustified => replyJustified 
       ? 'reply should be sent for ' + seqno
       : 'no reply for ' + seqno)

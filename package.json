@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Kaelinator/jay-bot#readme",
   "dependencies": {
     "@timheckel/parallel-dots": "^1.0.4",
+    "arrify": "^1.0.1",
     "bluebird": "^3.5.1",
     "dotenv": "^5.0.1",
     "mail-listener2": "^0.3.1",

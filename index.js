@@ -1,7 +1,8 @@
 'use strict'
 require('dotenv').config()
 const MailListener = require('mail-listener2')
-const ParallelDots = require('@timheckel/parallel-dots')
+const { analyzeSentences } = require('./lib/validators')
+const Promise = require('bluebird')
 
 const listener = new MailListener({
   
@@ -33,4 +34,4 @@ listener.on('mail', (mail, seqno, attrs) => {
   console.log('attributes:', attrs)
 })
 
-listener.start()
+// listener.start()

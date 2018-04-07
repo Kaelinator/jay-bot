@@ -19,16 +19,28 @@ const mailOptions = {
   html: '<b>Woah!</b>'
 }
 
+const imap = {
+  user: process.env.GMAIL_USER,
+  password: process.env.GMAIL_PASS,
+  host: 'imap.gmail.com',
+  port: 993,
+  tls: true,
+  authTimeout: 3000
+}
+
 const config = {
-  imap: {
-    user: process.env.GMAIL_USER,
-    password: process.env.GMAIL_PASS,
-    host: 'imap.gmail.com',
-    port: 993,
-    tls: true,
-    authTimeout: 3000
-  },
-  onmail: (numNewMail) => console.log('You have mail!', numNewMail)
+  imap,
+  onmail: n => {
+    console.log('You have mail!', n)
+    // if (n > 1) return
+    imaps.connect({ imap })
+      .then(conn => {
+        return conn.openBox('INBOX')
+          .then(() => conn.search(['ALL']))
+      })
+      .then(console.log)
+      .catch(err => console.log('onmail callback', err))
+  }
 }
 
 imaps.connect(config)

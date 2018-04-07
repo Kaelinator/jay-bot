@@ -26,6 +26,6 @@ describe('callEachSentence', () => {
       + 'Monday, February 26, 2018\r\n'
       + 'If you missed any RED-light items last week, that\'s okay.\r\n'
       + 'Can we say "Comprehension"? It\'s been 11 minutes.\r\n', s => s.length)
-    ).toEqual([ 25, 56, 26, 21 ])
+    ).toEqual([ 3, 25, 57, 49 ])
   })
 })

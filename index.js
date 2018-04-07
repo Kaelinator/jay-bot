@@ -34,4 +34,4 @@ listener.on('mail', (mail, seqno, attrs) => {
   console.log('attributes:', attrs)
 })
 
-// listener.start()
+listener.start()

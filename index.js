@@ -1,8 +1,7 @@
 'use strict'
 require('dotenv').config()
 const MailListener = require('mail-listener2')
-const parse = require('./lib/parse')
-const util = require('util')
+const ParallelDots = require('@timheckel/parallel-dots')
 
 const listener = new MailListener({
   

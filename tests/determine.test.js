@@ -1,4 +1,5 @@
 'use strict'
+/* global it, describe, expect */
 require('dotenv').config()
 
 const validators = require('../lib/validators')
@@ -9,11 +10,11 @@ describe('fromJay', () => {
 
     const from = ['"Kaelinator" <kael@me.com>', '"Judy Hopps" <judy@hopps.com>']
 
-    expect(validators.fromJay({from})).toBe(false)
+    expect(validators.fromJay({headers:{from}})).toBe(false)
 
     from.push(process.env.JAY)
 
-    expect(validators.fromJay({from})).toBe(true)
+    expect(validators.fromJay({headers:{from}})).toBe(true)
   })
 })
 

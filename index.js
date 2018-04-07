@@ -1,7 +1,7 @@
 'use strict'
 require('dotenv').config()
 const MailListener = require('mail-listener2')
-const parse = require('./lib/parse')
+const determine = require('./lib/determine')
 
 const listener = new MailListener({
   
@@ -27,10 +27,13 @@ listener.on('error', err => {
 })
 
 
-listener.on('mail', (mail, seqno, attrs) => {
-  console.log(`You have mail! #${seqno}`)
-  console.log('mail:', mail)
-  console.log('attributes:', attrs)
+listener.on('mail', (mail, seqno) => {
+  determine(mail)
+    .then(replyJustified => replyJustified 
+      ? 'reply should be sent for ' + seqno
+      : 'no reply for ' + seqno)
+    .then(console.log)
+    .catch(err => console.log(err))
 })
 
 listener.start()

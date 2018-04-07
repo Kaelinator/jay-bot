@@ -3,6 +3,7 @@ require('dotenv').config()
 const imaps = require('imap-simple')
 const nodemailer = require('nodemailer')
 const parse = require('./lib/parse')
+const util = require('util')
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -44,6 +45,7 @@ const config = {
           .then(() => conn.search(['UNSEEN'], fetchOptions))
           .then(results => results.map(r => r.parts))
           .then(parse)
+          .then(x => console.log(util.inspect(x, {depth: null})))
           .then(() => conn.end())
       })
       .catch(err => console.log('onmail callback', err))

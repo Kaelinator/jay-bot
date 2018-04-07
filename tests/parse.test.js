@@ -3,7 +3,7 @@ const parse = require('../lib/parse')
 
 describe('parse', () => {
 
-  it('gets the first element and converts it to a friendlier format', () => {
+  it('converts to a friendlier format', () => {
 
     const data = [ 
       [ 
@@ -32,6 +32,19 @@ describe('parse', () => {
       ]
     ]
 
-    expect(parse(data)).toEqual({'HEADER.FIELDS (FROM)': {'from': ['Me <kaelinator@me.com>']}, 'TEXT': 'CONTENT'})
+    expect(
+      parse.first(data)
+    ).toEqual(
+      {'from': ['Me <kaelinator@me.com>'], 'body': 'CONTENT'}
+    )
+
+    expect(
+      parse.all(data)
+    ).toEqual(
+      [
+        {'from': ['Me <kaelinator@me.com>'], 'body': 'CONTENT'},
+        {'from': ['Me <kaelinator@me.com>'], 'body': 'MORE CONTENT'},
+      ]
+    )
   })
 })

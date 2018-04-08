@@ -23,6 +23,7 @@
     "@timheckel/parallel-dots": "^1.0.4",
     "arrify": "^1.0.1",
     "bluebird": "^3.5.1",
+    "braces": "^2.3.1",
     "dotenv": "^5.0.1",
     "mail-listener2": "^0.3.1",
     "nodemailer": "^4.6.4",

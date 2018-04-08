@@ -4,7 +4,8 @@
   "description": "Jay likes to send emails that require near-instantaneous responses. jay-bot is here to help!",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

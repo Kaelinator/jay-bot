@@ -41,10 +41,11 @@ TARGET_SENTENCES=Sentences should be separated by double pipes.||This is another
 SIMILARITY_THRESHOLD=3
 
 # Template to generate random responses using bracket expansion
-# Note: single quotation marks will not appear in an email
 RESPONSE_TEMPLATE={Hi Jay!|Hey, Jay!} {I would {like|love}|Sign me up|I volunteer} to return papers!
 
 # Template to generate random subjects using bracket expansion
-# Note: single quotation marks will not appear in the subject
 SUBJECT_TEMPLATE=Need someone to {pass out|return} {assignments|papers}?
+
+# Whether or not to log a lot
+DEBUG=true
 ```

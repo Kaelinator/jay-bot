@@ -7,10 +7,10 @@ const transporter = require('./lib/transporter')
 
 const listener = new MailListener({
   
-  username: process.env.GMAIL_USER,
-  password: process.env.GMAIL_PASS,
-  host: 'imap.gmail.com',
-  port: 993,
+  username: process.env.EMAIL_USER,
+  password: process.env.EMAIL_PASS,
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
   tls: true,
   tlsOptions: { rejectUnauthorized: false },
   mailbox: 'INBOX',

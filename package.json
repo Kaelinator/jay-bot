@@ -24,11 +24,11 @@
     "@timheckel/parallel-dots": "^1.0.4",
     "arrify": "^1.0.1",
     "bluebird": "^3.5.1",
-    "braces": "^2.3.1",
+    "braces": "^2.3.2",
     "dotenv": "^5.0.1",
     "mail-listener2": "^0.3.1",
-    "nodemailer": "^4.6.4",
     "mailparser": "~0.5.3",
+    "nodemailer": "^4.6.4",
     "sentence-splitter": "^3.0.8"
   },
   "devDependencies": {
